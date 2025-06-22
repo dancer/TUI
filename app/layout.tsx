@@ -5,10 +5,39 @@ import "./globals.css";
 import ClientLayout from "./client-layout";
 
 export const metadata: Metadata = {
-  title: "TUI",
+  title: "tui.cat",
   description:
-    "Create, share, and discover open-source terminal UI applications.",
+    "A curated space for discovering, building, and sharing open-source terminal UI applications.",
   generator: "v0.dev",
+  metadataBase: new URL("https://tui.cat"),
+  openGraph: {
+    title: "tui.cat",
+    description:
+      "A curated space for discovering, building, and sharing open-source terminal UI applications.",
+    url: "https://tui.cat",
+    siteName: "tui.cat",
+    images: [
+      {
+        url: "/tui.png",
+        width: 1200,
+        height: 630,
+        alt: "tui.cat - Terminal UI Applications",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "tui.cat",
+    description:
+      "A curated space for discovering, building, and sharing open-source terminal UI applications.",
+    images: ["/tui.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
