@@ -1,0 +1,818 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Default Theme: Geist (maps to geist-light CSS) */
+  :root,
+  .geist-light /* Keep .geist-light for CSS variable definitions */,
+  [data-theme="geist"] {
+    --background: 0 0% 96.1%; /* neutral-100 */
+    --foreground: 0 0% 9%; /* neutral-900 */
+
+    --card: 0 0% 100%; /* white */
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 0 0% 9%; /* neutral-900 */
+    --primary-foreground: 0 0% 98%; /* neutral-50 */
+
+    --secondary: 0 0% 96.1%; /* neutral-100 */
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 92.2%; /* neutral-200 - Light background for input box */
+    --muted-foreground: 0 0% 45.1%; /* neutral-500 - Darker text for on light muted */
+
+    --accent: 0 0% 92.2%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%; /* neutral-300 */
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 9%;
+
+    --radius: 0.3rem;
+
+    /* Specific for terminal/keyboard if needed */
+    --terminal-bg: 0 0% 96.1%;
+    --terminal-text: 0 0% 9%;
+    --terminal-cursor: 0 0% 9%;
+    --terminal-prompt: 0 0% 45.1%; /* Muted foreground often works well for prompts */
+    --terminal-link: 0 0% 9%; /* Primary color for links in terminal */
+
+    --key-default-bg: 0 0% 98%; /* neutral-50 */
+    --key-default-text: 0 0% 25%; /* neutral-700 */
+    --key-default-border: 0 0% 85%; /* neutral-300/70 */
+    --key-modifier-bg: 0 0% 92.2%; /* neutral-200 */
+    --key-modifier-text: 0 0% 25%; /* neutral-700 */
+    --key-modifier-border: 0 0% 75%; /* neutral-400/80 */
+    --key-pressed-bg: 0 0% 15%; /* neutral-800 */
+    --key-pressed-text: 0 0% 95%; /* neutral-100 */
+    --key-special-highlight-bg: 0 0% 9%; /* black */
+    --key-special-highlight-text: 0 0% 100%; /* white */
+    --keyboard-case-from: 0 0% 92.2%; /* neutral-200 */
+    --keyboard-case-to: 0 0% 85%; /* neutral-300 */
+    --keyboard-plate-bg: 0 0% 96.1% / 0.8; /* neutral-100/80 */
+
+    /* Scrollbar colors */
+    --scrollbar-thumb: 0 0% 45.1%; /* Muted foreground */
+    --scrollbar-thumb-hover: 0 0% 9%; /* Primary */
+    --scrollbar-track: 0 0% 92.2%; /* Muted / slightly off-background */
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Catppuccin Latte Theme */
+  .catppuccin-latte,
+  [data-theme="catppuccin-latte"] {
+    --background: 220 23% 95%; /* Base: #eff1f5 */
+    --foreground: 234 16% 35%; /* Text: #4c4f69 */
+    --card: 220 22% 92%; /* Mantle: #e6e9ef */
+    --card-foreground: 234 16% 35%;
+    --popover: 220 22% 92%;
+    --popover-foreground: 234 16% 35%;
+    --primary: 220 91% 54%; /* Blue: #1e66f5 (matches Go package) */
+    --primary-foreground: 220 23% 95%;
+    --secondary: 266 85% 58%; /* Mauve: #8839ef */
+    --secondary-foreground: 220 23% 95%;
+    --muted: 223 16% 83%; /* Surface0: #ccd0da */
+    --muted-foreground: 233 10% 47%; /* Subtext0: #6c6f85 */
+    --accent: 22 99% 52%; /* Peach: #fe640b (matches Go package) */
+    --accent-foreground: 220 23% 95%;
+    --destructive: 347 87% 44%; /* Red: #d20f39 */
+    --destructive-foreground: 220 23% 95%;
+    --border: 228 11% 65%; /* Overlay0: #9ca0b0 */
+    --input: 228 11% 65%;
+    --ring: 220 91% 54%;
+
+    /* Additional semantic colors to match Go package */
+    --success: 109 58% 40%; /* Green: #40a02b */
+    --warning: 35 77% 49%; /* Yellow: #df8e1d */
+    --info: 197 97% 46%; /* Sky: #04a5e5 */
+
+    /* Terminal colors */
+    --terminal-bg: 220 23% 95%;
+    --terminal-text: 234 16% 35%;
+    --terminal-cursor: 234 16% 35%;
+    --terminal-prompt: 233 10% 47%;
+    --terminal-link: 220 91% 54%;
+
+    /* Keyboard colors */
+    --key-default-bg: 220 22% 92%;
+    --key-default-text: 234 16% 35%;
+    --key-default-border: 228 11% 65%;
+    --key-modifier-bg: 227 12% 71%; /* Surface2: #acb0be */
+    --key-modifier-text: 234 16% 35%;
+    --key-modifier-border: 228 11% 60%;
+    --key-pressed-bg: 234 16% 35%;
+    --key-pressed-text: 220 23% 95%;
+    --key-special-highlight-bg: 220 91% 54%; /* Blue instead of Mauve */
+    --key-special-highlight-text: 220 23% 95%;
+    --keyboard-case-from: 227 12% 71%;
+    --keyboard-case-to: 223 16% 83%;
+    --keyboard-plate-bg: 220 22% 92% / 0.8;
+
+    /* Scrollbar colors */
+    --scrollbar-thumb: 233 10% 47%;
+    --scrollbar-thumb-hover: 220 91% 54%;
+    --scrollbar-track: 223 16% 83%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Catppuccin Mocha Theme */
+  .catppuccin-mocha,
+  [data-theme="catppuccin-mocha"] {
+    --background: 240 21% 15%; /* Base: #1e1e2e */
+    --foreground: 226 64% 88%; /* Text: #cdd6f4 */
+    --card: 240 21% 12%; /* Mantle: #181825 */
+    --card-foreground: 226 64% 88%;
+    --popover: 240 21% 12%;
+    --popover-foreground: 226 64% 88%;
+    --primary: 217 92% 76%; /* Blue: #89b4fa (matches Go package) */
+    --primary-foreground: 240 21% 15%;
+    --secondary: 267 84% 81%; /* Mauve: #cba6f7 */
+    --secondary-foreground: 240 21% 15%;
+    --muted: 237 16% 23%; /* Surface0: #313244 */
+    --muted-foreground: 226 58% 82%; /* Improved contrast: lighter subtext1 #bac2de */
+    --accent: 23 92% 75%; /* Peach: #fab387 (matches Go package) */
+    --accent-foreground: 240 21% 15%;
+    --destructive: 343 81% 75%; /* Red: #f38ba8 */
+    --destructive-foreground: 240 21% 15%;
+    --border: 231 11% 47%; /* Overlay0: #6c7086 */
+    --input: 231 11% 47%;
+    --ring: 217 92% 76%;
+
+    /* Additional semantic colors to match Go package */
+    --success: 115 54% 76%; /* Green: #a6e3a1 */
+    --warning: 41 86% 83%; /* Yellow: #f9e2af */
+    --info: 189 71% 73%; /* Sky: #89dceb */
+
+    /* Terminal colors */
+    --terminal-bg: 240 21% 15%;
+    --terminal-text: 226 64% 88%;
+    --terminal-cursor: 226 64% 88%;
+    --terminal-prompt: 231 11% 55%; /* Improved contrast: overlay1 #7f849c */
+    --terminal-link: 217 92% 76%;
+
+    /* Keyboard colors */
+    --key-default-bg: 240 21% 12%;
+    --key-default-text: 226 64% 88%;
+    --key-default-border: 237 16% 23%;
+    --key-modifier-bg: 234 13% 31%; /* Surface1: #45475a */
+    --key-modifier-text: 226 64% 88%;
+    --key-modifier-border: 233 12% 39%;
+    --key-pressed-bg: 226 64% 88%;
+    --key-pressed-text: 240 21% 15%;
+    --key-special-highlight-bg: 217 92% 76%; /* Blue instead of Mauve */
+    --key-special-highlight-text: 240 21% 15%;
+    --keyboard-case-from: 234 13% 31%;
+    --keyboard-case-to: 237 16% 23%;
+    --keyboard-plate-bg: 240 21% 12% / 0.8;
+
+    /* Scrollbar colors */
+    --scrollbar-thumb: 231 11% 55%; /* Better visibility: overlay1 */
+    --scrollbar-thumb-hover: 217 92% 76%;
+    --scrollbar-track: 237 16% 23%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Solarized Light Theme */
+  .solarized-light,
+  [data-theme="solarized-light"] {
+    --background: 47 100% 97%; /* base3: #fdf6e3 */
+    --foreground: 44 13% 41%; /* base00: #657b83 */
+    --card: 48 67% 93%; /* base2: #eee8d5 */
+    --card-foreground: 44 13% 41%;
+    --popover: 48 67% 93%;
+    --popover-foreground: 44 13% 41%;
+    --primary: 188 50% 48%; /* blue: #268bd2 */
+    --primary-foreground: 47 100% 97%;
+    --secondary: 48 67% 93%;
+    --secondary-foreground: 44 13% 41%;
+    --muted: 47 33% 87%; /* base1: #93a1a1 */
+    --muted-foreground: 44 13% 41%;
+    --accent: 165 44% 51%; /* cyan: #2aa198 */
+    --accent-foreground: 47 100% 97%;
+    --destructive: 0 59% 56%; /* red: #dc322f */
+    --destructive-foreground: 47 100% 97%;
+    --border: 47 33% 87%;
+    --input: 47 33% 87%;
+    --ring: 188 50% 48%;
+    --terminal-bg: 47 100% 97%;
+    --terminal-text: 44 13% 41%;
+    --terminal-cursor: 44 13% 41%;
+    --terminal-prompt: 44 13% 55%; /* Better contrast for light theme */
+    --terminal-link: 188 50% 48%;
+    --key-default-bg: 48 67% 93%;
+    --key-default-text: 44 13% 41%;
+    --key-default-border: 47 33% 80%;
+    --key-modifier-bg: 47 33% 87%;
+    --key-modifier-text: 44 13% 41%;
+    --key-modifier-border: 47 33% 75%;
+    --key-pressed-bg: 44 13% 41%;
+    --key-pressed-text: 47 100% 97%;
+    --key-special-highlight-bg: 188 50% 48%;
+    --key-special-highlight-text: 47 100% 97%;
+    --keyboard-case-from: 47 33% 87%;
+    --keyboard-case-to: 48 67% 93%;
+    --keyboard-plate-bg: 47 100% 97% / 0.8;
+    --scrollbar-thumb: 47 33% 87%;
+    --scrollbar-thumb-hover: 188 50% 48%;
+    --scrollbar-track: 48 67% 93%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Solarized Dark Theme */
+  .solarized-dark,
+  [data-theme="solarized-dark"] {
+    --background: 44 27% 13%; /* base03: #002b36 */
+    --foreground: 47 33% 87%; /* base1: #93a1a1 */
+    --card: 44 23% 17%; /* base02: #073642 */
+    --card-foreground: 47 33% 87%;
+    --popover: 44 23% 17%;
+    --popover-foreground: 47 33% 87%;
+    --primary: 188 50% 48%; /* blue: #268bd2 */
+    --primary-foreground: 44 27% 13%;
+    --secondary: 44 23% 17%;
+    --secondary-foreground: 47 33% 87%;
+    --muted: 44 13% 41%; /* base00: #657b83 */
+    --muted-foreground: 47 33% 87%;
+    --accent: 165 44% 51%; /* cyan: #2aa198 */
+    --accent-foreground: 44 27% 13%;
+    --destructive: 0 59% 56%; /* red: #dc322f */
+    --destructive-foreground: 44 27% 13%;
+    --border: 44 13% 41%;
+    --input: 44 13% 41%;
+    --ring: 188 50% 48%;
+    --terminal-bg: 44 27% 13%;
+    --terminal-text: 47 33% 87%;
+    --terminal-cursor: 47 33% 87%;
+    --terminal-prompt: 44 13% 41%;
+    --terminal-link: 188 50% 48%;
+    --key-default-bg: 44 23% 17%;
+    --key-default-text: 47 33% 87%;
+    --key-default-border: 44 13% 35%;
+    --key-modifier-bg: 44 13% 41%;
+    --key-modifier-text: 47 33% 87%;
+    --key-modifier-border: 44 13% 30%;
+    --key-pressed-bg: 47 33% 87%;
+    --key-pressed-text: 44 27% 13%;
+    --key-special-highlight-bg: 188 50% 48%;
+    --key-special-highlight-text: 44 27% 13%;
+    --keyboard-case-from: 44 13% 41%;
+    --keyboard-case-to: 44 23% 17%;
+    --keyboard-plate-bg: 44 27% 13% / 0.8;
+    --scrollbar-thumb: 44 13% 41%;
+    --scrollbar-thumb-hover: 188 50% 48%;
+    --scrollbar-track: 44 23% 17%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Nord Theme */
+  .nord,
+  [data-theme="nord"] {
+    --background: 220 18% 23%; /* nord0: #2E3440 */
+    --foreground: 220 25% 88%; /* nord4: #D8DEE9 */
+    --card: 220 17% 27%; /* nord1: #3B4252 */
+    --card-foreground: 220 25% 88%;
+    --popover: 220 17% 27%;
+    --popover-foreground: 220 25% 88%;
+    --primary: 211 43% 60%; /* nord10: #5E81AC */
+    --primary-foreground: 220 18% 23%;
+    --secondary: 220 17% 27%;
+    --secondary-foreground: 220 25% 88%;
+    --muted: 220 15% 32%; /* nord3: #4C566A */
+    --muted-foreground: 220 25% 88%;
+    --accent: 200 45% 66%; /* nord8: #88C0D0 */
+    --accent-foreground: 220 18% 23%;
+    --destructive: 0 41% 59%; /* nord11: #BF616A */
+    --destructive-foreground: 220 18% 23%;
+    --border: 220 15% 32%;
+    --input: 220 15% 32%;
+    --ring: 211 43% 60%;
+    --terminal-bg: 220 18% 23%;
+    --terminal-text: 220 25% 88%;
+    --terminal-cursor: 220 25% 88%;
+    --terminal-prompt: 220 15% 45%; /* Improved contrast */
+    --terminal-link: 211 43% 60%;
+    --key-default-bg: 220 17% 27%;
+    --key-default-text: 220 25% 88%;
+    --key-default-border: 220 15% 30%;
+    --key-modifier-bg: 220 15% 32%;
+    --key-modifier-text: 220 25% 88%;
+    --key-modifier-border: 220 15% 28%;
+    --key-pressed-bg: 220 25% 88%;
+    --key-pressed-text: 220 18% 23%;
+    --key-special-highlight-bg: 211 43% 60%;
+    --key-special-highlight-text: 220 18% 23%;
+    --keyboard-case-from: 220 15% 32%;
+    --keyboard-case-to: 220 17% 27%;
+    --keyboard-plate-bg: 220 18% 23% / 0.8;
+    --scrollbar-thumb: 220 15% 32%;
+    --scrollbar-thumb-hover: 211 43% 60%;
+    --scrollbar-track: 220 17% 27%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Dracula Theme */
+  .dracula,
+  [data-theme="dracula"] {
+    --background: 231 15% 18%; /* #282a36 */
+    --foreground: 60 30% 96%; /* #f8f8f2 */
+    --card: 232 15% 22%; /* #343746 slightly lighter for card */
+    --card-foreground: 60 30% 96%;
+    --popover: 232 15% 22%;
+    --popover-foreground: 60 30% 96%;
+    --primary: 265 89% 78%; /* #bd93f9 */
+    --primary-foreground: 231 15% 18%;
+    --secondary: 232 15% 22%;
+    --secondary-foreground: 60 30% 96%;
+    --muted: 230 10% 33%; /* #44475a */
+    --muted-foreground: 60 30% 96%;
+    --accent: 189 90% 70%; /* #8be9fd */
+    --accent-foreground: 231 15% 18%;
+    --destructive: 0 100% 77%; /* #ff5555 */
+    --destructive-foreground: 231 15% 18%;
+    --border: 230 10% 33%;
+    --input: 230 10% 33%;
+    --ring: 265 89% 78%;
+    --terminal-bg: 231 15% 18%;
+    --terminal-text: 60 30% 96%;
+    --terminal-cursor: 60 30% 96%;
+    --terminal-prompt: 230 10% 45%; /* Improved contrast */
+    --terminal-link: 265 89% 78%;
+    --key-default-bg: 232 15% 22%;
+    --key-default-text: 60 30% 96%;
+    --key-default-border: 230 10% 30%;
+    --key-modifier-bg: 230 10% 33%;
+    --key-modifier-text: 60 30% 96%;
+    --key-modifier-border: 230 10% 28%;
+    --key-pressed-bg: 60 30% 96%;
+    --key-pressed-text: 231 15% 18%;
+    --key-special-highlight-bg: 265 89% 78%;
+    --key-special-highlight-text: 231 15% 18%;
+    --keyboard-case-from: 230 10% 33%;
+    --keyboard-case-to: 232 15% 22%;
+    --keyboard-plate-bg: 231 15% 18% / 0.8;
+    --scrollbar-thumb: 230 10% 33%;
+    --scrollbar-thumb-hover: 265 89% 78%;
+    --scrollbar-track: 232 15% 22%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Gruvbox Dark Theme */
+  .gruvbox-dark,
+  [data-theme="gruvbox-dark"] {
+    --background: 30 10% 16%; /* #282828 */
+    --foreground: 45 30% 82%; /* #ebdbb2 */
+    --card: 30 8% 20%; /* #3c3836 */
+    --card-foreground: 45 30% 82%;
+    --popover: 30 8% 20%;
+    --popover-foreground: 45 30% 82%;
+    --primary: 100 33% 58%; /* #8ec07c - green */
+    --primary-foreground: 30 10% 16%;
+    --secondary: 30 8% 20%;
+    --secondary-foreground: 45 30% 82%;
+    --muted: 30 6% 31%; /* #504945 */
+    --muted-foreground: 45 30% 82%;
+    --accent: 30 53% 66%; /* #fabd2f - yellow */
+    --accent-foreground: 30 10% 16%;
+    --destructive: 0 49% 55%; /* #fb4934 - red */
+    --destructive-foreground: 30 10% 16%;
+    --border: 30 6% 31%;
+    --input: 30 6% 31%;
+    --ring: 100 33% 58%;
+    --terminal-bg: 30 10% 16%;
+    --terminal-text: 45 30% 82%;
+    --terminal-cursor: 45 30% 82%;
+    --terminal-prompt: 30 6% 45%; /* Improved contrast */
+    --terminal-link: 100 33% 58%;
+    --key-default-bg: 30 8% 20%;
+    --key-default-text: 45 30% 82%;
+    --key-default-border: 30 6% 28%;
+    --key-modifier-bg: 30 6% 31%;
+    --key-modifier-text: 45 30% 82%;
+    --key-modifier-border: 30 6% 25%;
+    --key-pressed-bg: 45 30% 82%;
+    --key-pressed-text: 30 10% 16%;
+    --key-special-highlight-bg: 100 33% 58%;
+    --key-special-highlight-text: 30 10% 16%;
+    --keyboard-case-from: 30 6% 31%;
+    --keyboard-case-to: 30 8% 20%;
+    --keyboard-plate-bg: 30 10% 16% / 0.8;
+    --scrollbar-thumb: 30 6% 31%;
+    --scrollbar-thumb-hover: 100 33% 58%;
+    --scrollbar-track: 30 8% 20%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Tokyo Night Theme */
+  .tokyo-night,
+  [data-theme="tokyo-night"] {
+    --background: 233 27% 16%; /* #1a1b26 */
+    --foreground: 220 41% 79%; /* #a9b1d6 */
+    --card: 230 20% 19%; /* #24283b */
+    --card-foreground: 220 41% 79%;
+    --popover: 230 20% 19%;
+    --popover-foreground: 220 41% 79%;
+    --primary: 182 93% 72%; /* #7aa2f7 - blue */
+    --primary-foreground: 233 27% 16%;
+    --secondary: 230 20% 19%;
+    --secondary-foreground: 220 41% 79%;
+    --muted: 228 13% 28%; /* #414868 */
+    --muted-foreground: 220 41% 79%;
+    --accent: 160 84% 66%; /* #73daca - teal */
+    --accent-foreground: 233 27% 16%;
+    --destructive: 350 86% 71%; /* #f7768e - red */
+    --destructive-foreground: 233 27% 16%;
+    --border: 228 13% 28%;
+    --input: 228 13% 28%;
+    --ring: 182 93% 72%;
+    --terminal-bg: 233 27% 16%;
+    --terminal-text: 220 41% 79%;
+    --terminal-cursor: 220 41% 79%;
+    --terminal-prompt: 228 13% 40%; /* Improved contrast */
+    --terminal-link: 182 93% 72%;
+    --key-default-bg: 230 20% 19%;
+    --key-default-text: 220 41% 79%;
+    --key-default-border: 228 13% 25%;
+    --key-modifier-bg: 228 13% 28%;
+    --key-modifier-text: 220 41% 79%;
+    --key-modifier-border: 228 13% 22%;
+    --key-pressed-bg: 220 41% 79%;
+    --key-pressed-text: 233 27% 16%;
+    --key-special-highlight-bg: 182 93% 72%;
+    --key-special-highlight-text: 233 27% 16%;
+    --keyboard-case-from: 228 13% 28%;
+    --keyboard-case-to: 230 20% 19%;
+    --keyboard-plate-bg: 233 27% 16% / 0.8;
+    --scrollbar-thumb: 228 13% 28%;
+    --scrollbar-thumb-hover: 182 93% 72%;
+    --scrollbar-track: 230 20% 19%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Everforest Dark Theme */
+  .everforest-dark,
+  [data-theme="everforest-dark"] {
+    --background: 120 10% 18%; /* #2d352a - approx */
+    --foreground: 100 25% 80%; /* #a7c080 - approx */
+    --card: 120 9% 22%; /* #343f30 - approx */
+    --card-foreground: 100 25% 80%;
+    --popover: 120 9% 22%;
+    --popover-foreground: 100 25% 80%;
+    --primary: 100 35% 65%; /* #8da101 - approx green */
+    --primary-foreground: 120 10% 18%;
+    --secondary: 120 9% 22%;
+    --secondary-foreground: 100 25% 80%;
+    --muted: 110 7% 30%; /* #475258 - approx */
+    --muted-foreground: 100 25% 80%;
+    --accent: 40 50% 70%; /* #e69875 - approx orange */
+    --accent-foreground: 120 10% 18%;
+    --destructive: 0 55% 65%; /* #e67e80 - approx red */
+    --destructive-foreground: 120 10% 18%;
+    --border: 110 7% 30%;
+    --input: 110 7% 30%;
+    --ring: 100 35% 65%;
+    --terminal-bg: 120 10% 18%;
+    --terminal-text: 100 25% 80%;
+    --terminal-cursor: 100 25% 80%;
+    --terminal-prompt: 110 7% 45%; /* Improved contrast */
+    --terminal-link: 100 35% 65%;
+    --key-default-bg: 120 9% 22%;
+    --key-default-text: 100 25% 80%;
+    --key-default-border: 110 7% 28%;
+    --key-modifier-bg: 110 7% 30%;
+    --key-modifier-text: 100 25% 80%;
+    --key-modifier-border: 110 7% 25%;
+    --key-pressed-bg: 100 25% 80%;
+    --key-pressed-text: 120 10% 18%;
+    --key-special-highlight-bg: 100 35% 65%;
+    --key-special-highlight-text: 120 10% 18%;
+    --keyboard-case-from: 110 7% 30%;
+    --keyboard-case-to: 120 9% 22%;
+    --keyboard-plate-bg: 120 10% 18% / 0.8;
+    --scrollbar-thumb: 110 7% 30%;
+    --scrollbar-thumb-hover: 100 35% 65%;
+    --scrollbar-track: 120 9% 22%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* PaperColor Light Theme */
+  .papercolor-light,
+  [data-theme="papercolor-light"] {
+    --background: 60 100% 94%; /* #eeeeee - approx */
+    --foreground: 0 0% 27%; /* #444444 - approx */
+    --card: 60 100% 98%; /* #f5f5f5 - approx */
+    --card-foreground: 0 0% 27%;
+    --popover: 60 100% 98%;
+    --popover-foreground: 0 0% 27%;
+    --primary: 210 50% 45%; /* #005f87 - approx blue */
+    --primary-foreground: 60 100% 94%;
+    --secondary: 60 100% 98%;
+    --secondary-foreground: 0 0% 27%;
+    --muted: 0 0% 80%; /* #bcbcbc - approx */
+    --muted-foreground: 0 0% 27%;
+    --accent: 0 50% 50%; /* #d70000 - approx red */
+    --accent-foreground: 60 100% 94%;
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 60 100% 94%;
+    --border: 0 0% 80%;
+    --input: 0 0% 80%;
+    --ring: 210 50% 45%;
+    --terminal-bg: 60 100% 94%;
+    --terminal-text: 0 0% 27%;
+    --terminal-cursor: 0 0% 27%;
+    --terminal-prompt: 0 0% 55%; /* Better contrast for light theme */
+    --terminal-link: 210 50% 45%;
+    --key-default-bg: 60 100% 98%;
+    --key-default-text: 0 0% 27%;
+    --key-default-border: 0 0% 75%;
+    --key-modifier-bg: 0 0% 80%;
+    --key-modifier-text: 0 0% 27%;
+    --key-modifier-border: 0 0% 70%;
+    --key-pressed-bg: 0 0% 27%;
+    --key-pressed-text: 60 100% 94%;
+    --key-special-highlight-bg: 210 50% 45%;
+    --key-special-highlight-text: 60 100% 94%;
+    --keyboard-case-from: 0 0% 80%;
+    --keyboard-case-to: 60 100% 98%;
+    --keyboard-plate-bg: 60 100% 94% / 0.8;
+    --scrollbar-thumb: 0 0% 80%;
+    --scrollbar-thumb-hover: 210 50% 45%;
+    --scrollbar-track: 60 100% 98%;
+
+    ::selection {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    ::-moz-selection {
+      /* Firefox */
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  /* Default selection (fallback, though themes should override) */
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  ::-moz-selection {
+    /* Firefox */
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Minimal Scrollbar Styling */
+  /* For Webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(
+      var(--scrollbar-track, var(--muted))
+    ); /* Fallback to muted if not defined */
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(
+      var(--scrollbar-thumb, var(--muted-foreground))
+    ); /* Fallback */
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(
+      var(--scrollbar-thumb-hover, var(--primary))
+    ); /* Fallback */
+  }
+  /* For Firefox (more limited but good for consistency) */
+  html {
+    /* Apply to html for better Firefox support */
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--scrollbar-thumb, var(--muted-foreground)))
+      hsl(var(--scrollbar-track, var(--muted)));
+  }
+}
+
+.blinking-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    color: transparent;
+    background-color: hsl(var(--foreground));
+  }
+  50% {
+    color: hsl(var(--foreground));
+    background-color: transparent;
+  }
+}
+/* Ensure blinking cursor on SSH page uses theme colors */
+.ssh-blinking-cursor {
+  background-color: hsl(var(--terminal-cursor));
+  animation: ssh_blink 1s step-end infinite;
+}
+
+@keyframes ssh_blink {
+  from,
+  to {
+    background-color: hsl(var(--terminal-cursor));
+  }
+  50% {
+    background-color: transparent;
+  }
+}
+
+/* Ensure links in terminal output use a themeable color */
+.terminal-output-link a {
+  color: hsl(var(--terminal-link));
+  text-decoration: underline;
+}
+.terminal-output-link a:hover {
+  filter: brightness(1.25); /* Or use another variable for hover if defined */
+}
+
+/* Enhanced SSH output styling */
+.ssh-output {
+  font-family:
+    var(--font-geist-mono), "SF Mono", Monaco, "Cascadia Code", "Roboto Mono",
+    Consolas, "Courier New", monospace;
+  line-height: 1.4;
+  letter-spacing: 0.025em;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Improve text readability across all themes */
+.text-contrast-enhanced {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme text enhancement */
+.catppuccin-mocha .text-contrast-enhanced,
+.nord .text-contrast-enhanced,
+.dracula .text-contrast-enhanced,
+.gruvbox-dark .text-contrast-enhanced,
+.tokyo-night .text-contrast-enhanced,
+.everforest-dark .text-contrast-enhanced,
+.solarized-dark .text-contrast-enhanced {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Light theme text enhancement */
+.geist-light .text-contrast-enhanced,
+.catppuccin-latte .text-contrast-enhanced,
+.solarized-light .text-contrast-enhanced,
+.papercolor-light .text-contrast-enhanced {
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Better rendering for ASCII art and special characters */
+.ssh-output .ansi-art {
+  font-variant-ligatures: none;
+  font-feature-settings: normal;
+  text-rendering: optimizeSpeed;
+}
+
+/* Improve color contrast for better readability */
+.ssh-output span[style*="color"] {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Better spacing for system info output */
+.ssh-output .system-info {
+  line-height: 1.5;
+}
+
+/* Styling for code blocks within readme.md or other cat output */
+.cat-code-block {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground)); /* Or foreground if better contrast */
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+  /* font-size: 1em; /* Ensure it inherits or is same as base */
+}
+
+/* Added utility for subtle grid background */
+@layer utilities {
+  .subtle-grid-background {
+    --grid-line-color: hsl(
+      var(--foreground) / 0.04
+    ); /* Using 4% opacity of foreground color */
+    --grid-spacing: 1.5rem; /* Adjust spacing as needed (e.g., 24px) */
+    background-image:
+      linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+      /* Vertical lines */
+        linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px); /* Horizontal lines */
+    background-size: var(--grid-spacing) var(--grid-spacing);
+  }
+}
