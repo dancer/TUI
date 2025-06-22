@@ -217,13 +217,6 @@ const commandCategories: CommandCategory[] = [
       },
       {
         id: "19",
-        cmd: "battery",
-        description:
-          "Display battery status and power information (if supported by browser).",
-        category: "terminal",
-      },
-      {
-        id: "20",
         cmd: "exit",
         description: "Close the current session and return to the homepage.",
         category: "terminal",
@@ -237,7 +230,7 @@ const commandCategories: CommandCategory[] = [
     icon: <ExternalLink className="w-3 h-3" />,
     commands: [
       { 
-        id: "21", 
+        id: "20", 
         cmd: ".github", 
         description:
           "Navigate to the tui.cat GitHub repository and view the source code.",
@@ -245,7 +238,7 @@ const commandCategories: CommandCategory[] = [
         category: "external",
       },
       {
-        id: "22",
+        id: "21",
         cmd: ".vercel",
         description:
           "Quick link to Vercel platform for deployment and hosting.",
@@ -253,14 +246,14 @@ const commandCategories: CommandCategory[] = [
         category: "external",
       },
       {
-        id: "23",
+        id: "22",
         cmd: ".v0",
         description: "Access v0.dev for AI-powered component generation.",
         url: "https://v0.dev",
         category: "external",
       },
       {
-        id: "24",
+        id: "23",
         cmd: ".aisdk",
         description: "Navigate to Vercel AI SDK documentation and resources.",
         url: "https://sdk.vercel.ai",

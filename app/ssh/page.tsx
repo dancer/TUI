@@ -107,52 +107,13 @@ const sshHelpInfo = [
   },
   { cmd: "help", description: "Display this help information." },
   { cmd: "clear", description: "Clear the terminal screen." },
-  { cmd: "neo", description: "Display enhanced system information." },
-  { cmd: "battery", description: "Show battery status (if supported)." },
+  { cmd: "neo", description: "Display system information." },
   { cmd: "ssh", description: "Connect to remote server via SSH." },
   { cmd: "ls", description: "List files and directories." },
   { cmd: "cd <dir>", description: "Change directory." },
   { cmd: "cat <file>", description: "Display file content." },
   { cmd: "exit", description: "Close the session and return to the homepage." },
 ];
-
-const getGpuInfo = (): string => {
-  try {
-    const canvas = document.createElement("canvas");
-    const gl =
-      canvas.getContext("webgl2") ||
-      canvas.getContext("webgl") ||
-      canvas.getContext("experimental-webgl");
-
-    if (
-      gl &&
-      (gl instanceof WebGLRenderingContext ||
-        gl instanceof WebGL2RenderingContext)
-    ) {
-      const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
-      if (debugInfo) {
-        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-        if (typeof renderer === "string") {
-          return renderer
-            .replace(/^ANGLE \((.*?)\).*$/, "$1") // Remove ANGLE wrapper
-            .replace(/^.*ANGLE Metal Renderer: (.*?),.*$/, "$1") // Extract from Metal Renderer
-            .replace(/^.*Metal Renderer: (.*?),.*$/, "$1") // Extract from Metal Renderer (fallback)
-            .replace(/^(.*?), ANGLE.*$/, "$1") // Remove ANGLE suffix
-            .replace(/^(.*?), Unspecified Version.*$/, "$1") // Remove version info
-            .replace(/ Direct3D\d+ vs_\d_\d ps_\d_\d$/, "") // Remove DirectX version info
-            .replace(/\s+/g, " ") // Normalize whitespace
-            .trim();
-        }
-        return renderer?.toString() || "N/A (No renderer string provided)";
-      }
-      return "N/A (WebGL debug info not supported)";
-    }
-    return "N/A (WebGL context unavailable)";
-  } catch (e) {
-    console.error("Error getting GPU info:", e);
-    return "N/A (Error querying WebGL)";
-  }
-};
 
 const getBrowserInfo = (): { name: string; version: string } => {
   const userAgent = navigator.userAgent;
@@ -881,34 +842,14 @@ export default function SSHPage() {
       case "neo":
         const osInfo = getOSInfo();
         const browserInfo = getBrowserInfo();
-        const gpuInfo = getGpuInfo();
 
         const cores = navigator.hardwareConcurrency
           ? `${navigator.hardwareConcurrency} cores`
           : "N/A";
         const screenRes = `${window.screen.width}×${window.screen.height}`;
-        const colorDepth = `${window.screen.colorDepth}-bit`;
-        const pixelRatio = window.devicePixelRatio
-          ? `${window.devicePixelRatio}x`
-          : "1x";
         const lang = navigator.language || "N/A";
         const timezone =
           Intl.DateTimeFormat().resolvedOptions().timeZone || "N/A";
-
-        // Memory info (experimental API)
-        // @ts-ignore Experimental property
-        const memory = (navigator as any).deviceMemory
-          ? `~${(navigator as any).deviceMemory} GB`
-          : "N/A";
-
-        // Connection info (experimental API)
-        // @ts-ignore Experimental property
-        const connection = navigator.connection;
-        const networkInfo = connection
-          ? `${connection.effectiveType || "Unknown"} (${connection.downlink || "?"}Mbps)`
-          : "N/A";
-
-        const batterySupported = "getBattery" in navigator;
 
         const osDisplay = osInfo.version
           ? `${osInfo.name} ${osInfo.version}`
@@ -916,7 +857,6 @@ export default function SSHPage() {
         const browserDisplay = `${browserInfo.name} ${browserInfo.version}`;
 
         const uptime = formatUptime(performance.now());
-        const currentTime = new Date().toLocaleString();
 
         const neoOutput = [
           `OS: ${osDisplay}`,
@@ -924,8 +864,6 @@ export default function SSHPage() {
           `Browser: ${browserDisplay}`,
           `Resolution: ${screenRes}`,
           `CPU: ${cores}`,
-          `Memory: ${memory}`,
-          `GPU: ${gpuInfo}`,
           `Locale: ${lang}`,
           `Timezone: ${timezone}`,
           `Uptime: ${uptime}`,
@@ -939,52 +877,7 @@ export default function SSHPage() {
           </div>
         );
         break;
-      case "battery":
-        if ("getBattery" in navigator) {
-          // @ts-ignore Battery API is experimental
-          navigator
-            .getBattery()
-            .then((battery: any) => {
-              const level = Math.round(battery.level * 100);
-              const charging = battery.charging;
-              const chargingTime = battery.chargingTime;
-              const dischargingTime = battery.dischargingTime;
 
-              const formatTime = (seconds: number): string => {
-                if (seconds === Infinity || isNaN(seconds)) return "Unknown";
-                const hours = Math.floor(seconds / 3600);
-                const minutes = Math.floor((seconds % 3600) / 60);
-                return `${hours}h ${minutes}m`;
-              };
-
-              const batteryOutput = [
-                `Battery: ${level}% ${charging ? "(charging)" : "(discharging)"}`,
-                `Charging time: ${charging ? formatTime(chargingTime) : "N/A"}`,
-                `Remaining time: ${!charging ? formatTime(dischargingTime) : "N/A"}`,
-              ];
-
-              const batteryResponse = (
-                <div>
-                  {batteryOutput.map((line, idx) => (
-                    <div key={`battery-${idx}`}>{line}</div>
-                  ))}
-                </div>
-              );
-
-              setLines((prev) => [...prev, batteryResponse]);
-            })
-            .catch(() => {
-              setLines((prev) => [
-                ...prev,
-                <span key={`battery-error-${Date.now()}`}>
-                  Battery API error: Unable to retrieve battery information
-                </span>,
-              ]);
-            });
-        } else {
-          response = <span>Battery API not supported in this browser</span>;
-        }
-        break;
       case "ssh":
         if (isSSHConnected) {
           response = (
