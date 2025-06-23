@@ -116,7 +116,7 @@ export default function LandingPage() {
           <span className="mx-2">&middot;</span>
           <span>COMMAND-LINE</span>
         </div>
-        <div className="mt-12 md:mt-16 w-full flex justify-center overflow-hidden px-2">
+        <div className="mt-8 sm:mt-12 md:mt-16 w-full flex justify-center overflow-hidden px-1 sm:px-2">
           {/* isTitleTyping is true if animation is actively playing */}
           <Keyboard
             simulatedKeyCode={currentSimulatedKeyCode}

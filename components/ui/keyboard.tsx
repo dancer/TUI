@@ -36,12 +36,12 @@ const KeyboardKey = ({
   const isPhysicallyPressed = pressedKeys.has(code);
   const isSpecialTUIMKey = ["KeyT", "KeyU", "KeyI"].includes(code);
 
-  const KEY_UNIT_WIDTH_SM = "2.1rem";
-  const KEY_GAP_SM = "0.15rem";
+  const KEY_UNIT_WIDTH_SM = "1.8rem";
+  const KEY_GAP_SM = "0.1rem";
   const widthStyleSm = `calc(${KEY_UNIT_WIDTH_SM} * ${widthMultiplier} + ${KEY_GAP_SM} * ${widthMultiplier - 1})`;
 
   const baseKeyClasses =
-    "h-8 sm:h-9 md:h-10 flex items-center justify-center border rounded font-mono text-xs sm:text-sm shadow-sm transition-all duration-75 ease-out transform transition-colors duration-300 ease-in-out";
+    "h-7 sm:h-9 md:h-10 flex items-center justify-center border rounded font-mono text-[10px] sm:text-sm shadow-sm transition-all duration-75 ease-out transform transition-colors duration-300 ease-in-out";
 
   let dynamicKeyClasses = "";
 
@@ -97,7 +97,7 @@ const KeyboardKey = ({
 };
 
 const KeyboardRow = ({ children }: { children: React.ReactNode }) => {
-  const KEY_GAP_SM = "0.15rem";
+  const KEY_GAP_SM = "0.1rem";
   return (
     <div
       className="flex justify-center items-stretch my-0.5 sm:my-1"
@@ -504,73 +504,76 @@ export const Keyboard = ({
     .replace(/\b\w/g, (l) => l.toUpperCase());
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div
-        className={cn(
-          "inline-block rounded-xl mx-auto transform transition-all duration-300 ease-out",
-          "bg-gradient-to-b from-keyboard-case-from to-keyboard-case-to",
-          "border border-key-modifier-border p-1 sm:p-1.5",
-          "shadow-[0_10px_20px_rgba(0,0,0,0.15),_0_5px_10px_rgba(0,0,0,0.1)]",
-        )}
-        style={{
-          perspective: "1800px",
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to right, transparent 2%, black 10%, black 90%, transparent 98%)",
-          maskComposite: "intersect",
-        }}
-      >
+    <div className="flex flex-col items-center justify-center w-full">
+      <div className="flex justify-center w-full">
         <div
-          className="bg-keyboard-plate-bg p-1.5 sm:p-2 rounded-lg shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)]"
+          className={cn(
+            "rounded-xl transform transition-all duration-300 ease-out",
+            "bg-gradient-to-b from-keyboard-case-from to-keyboard-case-to",
+            "border border-key-modifier-border p-0.5 sm:p-1.5",
+            "shadow-[0_10px_20px_rgba(0,0,0,0.15),_0_5px_10px_rgba(0,0,0,0.1)]",
+            "scale-75 sm:scale-90 md:scale-100 origin-center",
+          )}
           style={{
-            transform: "rotateX(10deg) scale(0.96) translateY(-6px)",
-            transformOrigin: "center 60%",
+            perspective: "1800px",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to right, transparent 2%, black 10%, black 90%, transparent 98%)",
+            maskComposite: "intersect",
           }}
         >
-          {keyRowsData.map((row, rowIndex) => (
-            <KeyboardRow key={rowIndex}>
-              {row.map((keyData: any) => {
-                const keyComponent = (
-                  <KeyboardKey
-                    key={keyData.code}
-                    char={keyData.char}
-                    symbol={keyData.symbol}
-                    code={keyData.code}
-                    pressedKeys={pressedKeys}
-                    isSimulatedPress={brieflySimulatedKey === keyData.code}
-                    initialHighlightActive={isTuiHighlighted}
-                    widthMultiplier={keyData.width}
-                    variant={keyData.variant as "modifier" | "default"}
-                    isIcon={keyData.isIcon}
-                    onClick={keyData.onClick}
-                  />
-                );
-                if (keyData.isLink && keyData.href) {
-                  return (
-                    <a
-                      key={`${keyData.code}-link`}
-                      href={keyData.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={keyData.ariaLabel}
-                      onClick={(e) => {
-                        if (isTitleTyping) e.preventDefault();
-                        else handleFirstInteraction();
-                      }}
-                    >
-                      {keyComponent}
-                    </a>
+          <div
+            className="bg-keyboard-plate-bg p-1 sm:p-2 rounded-lg shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)]"
+            style={{
+              transform: "rotateX(10deg) scale(0.96) translateY(-6px)",
+              transformOrigin: "center 60%",
+            }}
+          >
+            {keyRowsData.map((row, rowIndex) => (
+              <KeyboardRow key={rowIndex}>
+                {row.map((keyData: any) => {
+                  const keyComponent = (
+                    <KeyboardKey
+                      key={keyData.code}
+                      char={keyData.char}
+                      symbol={keyData.symbol}
+                      code={keyData.code}
+                      pressedKeys={pressedKeys}
+                      isSimulatedPress={brieflySimulatedKey === keyData.code}
+                      initialHighlightActive={isTuiHighlighted}
+                      widthMultiplier={keyData.width}
+                      variant={keyData.variant as "modifier" | "default"}
+                      isIcon={keyData.isIcon}
+                      onClick={keyData.onClick}
+                    />
                   );
-                }
-                return keyComponent;
-              })}
-            </KeyboardRow>
-          ))}
+                  if (keyData.isLink && keyData.href) {
+                    return (
+                      <a
+                        key={`${keyData.code}-link`}
+                        href={keyData.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={keyData.ariaLabel}
+                        onClick={(e) => {
+                          if (isTitleTyping) e.preventDefault();
+                          else handleFirstInteraction();
+                        }}
+                      >
+                        {keyComponent}
+                      </a>
+                    );
+                  }
+                  return keyComponent;
+                })}
+              </KeyboardRow>
+            ))}
+          </div>
         </div>
       </div>
 
       <div
         className={cn(
-          "mt-4 w-full max-w-[calc(2.1rem*13.25+0.15rem*12.25)] mx-auto px-1 sm:px-0 transition-all duration-200 ease-in-out h-10",
+          "mt-4 w-full max-w-[calc(1.8rem*13.25+0.1rem*12.25)] sm:max-w-[calc(2.1rem*13.25+0.15rem*12.25)] mx-auto px-2 sm:px-0 transition-all duration-200 ease-in-out h-10",
           (isCommandInputVisible || commandOutput) && !isThemeSelectorOpen
             ? "opacity-100 visible translate-y-0"
             : "opacity-0 invisible translate-y-2",
