@@ -512,7 +512,7 @@ export const Keyboard = ({
             "bg-gradient-to-b from-keyboard-case-from to-keyboard-case-to",
             "border border-key-modifier-border p-0.5 sm:p-1.5",
             "shadow-[0_10px_20px_rgba(0,0,0,0.15),_0_5px_10px_rgba(0,0,0,0.1)]",
-            "scale-75 sm:scale-90 md:scale-100 origin-center",
+            "scale-[0.9] sm:scale-95 md:scale-100 origin-center",
           )}
           style={{
             perspective: "1800px",
