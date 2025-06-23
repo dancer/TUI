@@ -239,28 +239,28 @@ export default function SSHPage() {
   const ansiConverter = useMemo(
     () =>
       new Convert({
-        fg: "#e5e7eb", // Better default foreground color
+        fg: "#e5e7eb",
         bg: "transparent",
         newline: true,
         escapeXML: false,
         stream: false,
         colors: {
-          0: "#1f2937", // black - darker for better contrast
-          1: "#ef4444", // red - vibrant red
-          2: "#22c55e", // green - vibrant green
-          3: "#f59e0b", // yellow - amber
-          4: "#3b82f6", // blue - vibrant blue
-          5: "#a855f7", // magenta - purple
-          6: "#06b6d4", // cyan - sky blue
-          7: "#f3f4f6", // white - light gray
-          8: "#6b7280", // bright black - gray
-          9: "#f87171", // bright red - lighter red
-          10: "#4ade80", // bright green - lighter green
-          11: "#fbbf24", // bright yellow - lighter amber
-          12: "#60a5fa", // bright blue - lighter blue
-          13: "#c084fc", // bright magenta - lighter purple
-          14: "#22d3ee", // bright cyan - lighter sky
-          15: "#ffffff", // bright white - pure white
+          0: "#1f2937",
+          1: "#ef4444",
+          2: "#22c55e",
+          3: "#f59e0b",
+          4: "#3b82f6",
+          5: "#a855f7",
+          6: "#06b6d4",
+          7: "#f3f4f6",
+          8: "#6b7280",
+          9: "#f87171",
+          10: "#4ade80",
+          11: "#fbbf24",
+          12: "#60a5fa",
+          13: "#c084fc",
+          14: "#22d3ee",
+          15: "#ffffff",
         },
       }),
     [],
@@ -311,37 +311,37 @@ export default function SSHPage() {
     processed = ansiConverter.toHtml(processed);
     
     processed = processed
-      .replace(/\x1b\[\d+;\d+H/g, '') // ESC[row;colH - cursor position
-      .replace(/\x1b\[\d+H/g, '') // ESC[rowH - cursor to row
-      .replace(/\x1b\[\d+A/g, '') // ESC[nA - cursor up
-      .replace(/\x1b\[\d+B/g, '') // ESC[nB - cursor down
-      .replace(/\x1b\[\d+C/g, '') // ESC[nC - cursor forward
-      .replace(/\x1b\[\d+D/g, '') // ESC[nD - cursor back
+      .replace(/\x1b\[\d+;\d+H/g, '')
+      .replace(/\x1b\[\d+H/g, '')
+      .replace(/\x1b\[\d+A/g, '')
+      .replace(/\x1b\[\d+B/g, '')
+      .replace(/\x1b\[\d+C/g, '')
+      .replace(/\x1b\[\d+D/g, '')
       
-      .replace(/\x1b\[2J/g, '') // ESC[2J - clear screen
-      .replace(/\x1b\[H/g, '') // ESC[H - cursor home
-      .replace(/\x1b\[K/g, '') // ESC[K - erase to end of line
-      .replace(/\x1b\[2K/g, '') // ESC[2K - erase entire line
-      .replace(/\x1b\[1K/g, '') // ESC[1K - erase to beginning of line
+      .replace(/\x1b\[2J/g, '')
+      .replace(/\x1b\[H/g, '')
+      .replace(/\x1b\[K/g, '')
+      .replace(/\x1b\[2K/g, '')
+      .replace(/\x1b\[1K/g, '')
       
-      .replace(/\x1b\[s/g, '') // ESC[s - save cursor
-      .replace(/\x1b\[u/g, '') // ESC[u - restore cursor
-      .replace(/\x1b7/g, '') // ESC7 - save cursor (alternate)
-      .replace(/\x1b8/g, '') // ESC8 - restore cursor (alternate)
+      .replace(/\x1b\[s/g, '')
+      .replace(/\x1b\[u/g, '')
+      .replace(/\x1b7/g, '')
+      .replace(/\x1b8/g, '')
       
-      .replace(/\x1b\[\d+S/g, '') // ESC[nS - scroll up
-      .replace(/\x1b\[\d+T/g, '') // ESC[nT - scroll down
+      .replace(/\x1b\[\d+S/g, '')
+      .replace(/\x1b\[\d+T/g, '')
       
-      .replace(/\x1b\]0;[^]*?\x07/g, '') // ESC]0;title\BEL
-      .replace(/\x1b\]2;[^]*?\x07/g, '') // ESC]2;title\BEL
+      .replace(/\x1b\]0;[^]*?\x07/g, '')
+      .replace(/\x1b\]2;[^]*?\x07/g, '')
       
-      .replace(/\x1b\[\?\d+[hl]/g, '') // ESC[?nh or ESC[?nl - set/reset mode
+      .replace(/\x1b\[\?\d+[hl]/g, '')
       
-      .replace(/\x1b\([AB0]/g, '') // ESC(A, ESC(B, ESC(0 - character sets
+      .replace(/\x1b\([AB0]/g, '')
       
-      .replace(/\d+;\d+m/g, '') // Remove orphaned color codes
-      .replace(/;\d+m/g, '') // Remove partial sequences
-      .replace(/\d+m/g, '') // Remove single numbers followed by m
+      .replace(/\d+;\d+m/g, '')
+      .replace(/;\d+m/g, '')
+      .replace(/\d+m/g, '')
       
       .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
     
