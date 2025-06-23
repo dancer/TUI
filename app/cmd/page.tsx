@@ -2,16 +2,14 @@ import type React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight,
   Terminal,
   Navigation,
-  Settings,
   ExternalLink,
   Keyboard,
   Zap,
   Globe,
   Code,
-  Palette,
+  Palette
 } from "lucide-react";
 import { TerminalIcon } from "@/components/terminal-icon";
 
