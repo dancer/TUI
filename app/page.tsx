@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Github, Sparkles } from "lucide-react";
 import { VercelLogoIcon } from "@/components/icons/vercel-logo";
 import { Keyboard } from "@/components/ui/keyboard";
