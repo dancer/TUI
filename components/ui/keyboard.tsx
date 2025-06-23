@@ -35,6 +35,7 @@ const KeyboardKey = ({
 }: KeyboardKeyProps) => {
   const isPhysicallyPressed = pressedKeys.has(code);
   const isSpecialTUIMKey = ["KeyT", "KeyU", "KeyI"].includes(code);
+  const isDotKey = code === "Period";
 
   const KEY_UNIT_WIDTH_SM = "1.8rem";
   const KEY_GAP_SM = "0.1rem";
@@ -58,6 +59,8 @@ const KeyboardKey = ({
         : "bg-key-default-bg text-key-default-text border-key-default-border hover:brightness-95 shadow-[0_1px_1px_rgba(0,0,0,0.07),_inset_0_0.5px_0_rgba(255,255,255,0.3)]";
   }
 
+  const pulseClass = isDotKey ? "dot-key-pulse" : "";
+
   let iconColorClass = "";
   if (isIcon) {
     iconColorClass =
@@ -72,6 +75,7 @@ const KeyboardKey = ({
         baseKeyClasses,
         dynamicKeyClasses,
         iconColorClass,
+        pulseClass,
         onClick ? "cursor-pointer" : "",
       )}
       style={{ width: widthStyleSm }}
