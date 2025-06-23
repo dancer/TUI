@@ -601,7 +601,7 @@ export const Keyboard = ({
               tabIndex={isCommandInputVisible ? 0 : -1}
             />
           ) : commandOutput ? (
-            <span className="text-sm text-muted-foreground">
+            <span className="text-base text-muted-foreground">
               {commandOutput}
             </span>
           ) : null}
@@ -619,7 +619,7 @@ export const Keyboard = ({
             className="bg-card text-card-foreground rounded-md shadow-xl w-full max-w-md overflow-hidden border border-border"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-3 py-2 text-sm border-b border-border text-muted-foreground">
+            <div className="px-3 py-2 text-base border-b border-border text-muted-foreground">
               Select Theme [current: {displayedCurrentThemeName}]
             </div>
             <div ref={themeListRef} className="max-h-72 overflow-y-auto">
@@ -629,7 +629,7 @@ export const Keyboard = ({
                   onClick={() => handleSelectTheme(availableThemes[index])}
                   onMouseEnter={() => setHighlightedIndex(index)}
                   className={cn(
-                    "px-3 py-1 text-sm cursor-default flex items-center",
+                    "px-3 py-1 text-base cursor-default flex items-center",
                     index === highlightedIndex
                       ? "bg-primary text-primary-foreground font-medium"
                       : "hover:bg-muted/50 text-foreground",

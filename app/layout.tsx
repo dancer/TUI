@@ -44,6 +44,13 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
+  other: {
+    "theme-color": "#0a0a0a",
+    "color-scheme": "light dark", 
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": "tui.cat",
+  },
 };
 
 export default function RootLayout({

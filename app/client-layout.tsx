@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { usePathname } from "next/navigation";
 import { GlobalCommandPalette } from "@/components/global-command-palette";
 import { MobileNavDropdown } from "@/components/mobile-nav-dropdown";
+import { ThemeMeta } from "@/components/theme-meta";
 
 export default function ClientLayout({
   children,
@@ -24,7 +25,8 @@ export default function ClientLayout({
   const currentPage = getCurrentPage();
 
   return (
-    <ThemeProvider defaultTheme="geist-light" storageKey="tui-cat-theme">
+    <ThemeProvider defaultTheme="geist" storageKey="tui-cat-theme">
+      <ThemeMeta />
       {/* Hide header on specific pages */}
       {pathname !== "/about" &&
         pathname !== "/projects" &&
