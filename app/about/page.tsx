@@ -7,10 +7,7 @@ import {
   Code,
   Users,
   Zap,
-  CheckCircle,
-  GitBranch,
-  Lightbulb,
-  Target,
+  CheckCircle
 } from "lucide-react";
 import { PageSidebar } from "@/components/page-sidebar";
 

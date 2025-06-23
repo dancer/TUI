@@ -7,15 +7,11 @@ import {
   Code,
   Users,
   Zap,
-  CheckCircle,
-  Clock,
-  Calendar,
   Target,
   Lightbulb,
-  GitBranch,
+  GitBranch
 } from "lucide-react";
 import { PageSidebar } from "@/components/page-sidebar";
-import { TerminalIcon } from "@/components/terminal-icon";
 
 export const metadata: Metadata = {
   title: "Roadmap - tui.cat",

@@ -125,7 +125,7 @@ export function SSHLogin({
           value={host}
           onChange={(e) => setHost(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e, hostInputRef)}
-          className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] flex-1 ml-2"
+          className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] flex-1 ml-2 text-base"
           placeholder="server.example.com"
           disabled={isConnecting}
           autoComplete="off"
@@ -150,7 +150,7 @@ export function SSHLogin({
           onChange={(e) => setUsername(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e, usernameInputRef)}
           onClick={() => usernameInputRef.current?.focus()}
-          className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] flex-1 ml-2"
+          className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] flex-1 ml-2 text-base"
           placeholder="root"
           disabled={isConnecting}
           autoComplete="off"
@@ -212,7 +212,7 @@ export function SSHLogin({
              onChange={(e) => setPassword(e.target.value)}
              onKeyDown={(e) => handleKeyDown(e, passwordInputRef)}
              onClick={() => passwordInputRef.current?.focus()}
-             className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] flex-1 ml-2"
+             className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] flex-1 ml-2 text-base"
              placeholder="••••••••"
              disabled={isConnecting}
              autoComplete="off"
@@ -273,7 +273,7 @@ export function SSHLogin({
           onChange={(e) => setPort(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e, portInputRef)}
           onClick={() => portInputRef.current?.focus()}
-          className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] w-20 ml-2"
+          className="bg-transparent border-none outline-none text-[hsl(var(--terminal-text))] w-20 ml-2 text-base"
           placeholder="22"
           disabled={isConnecting}
           autoComplete="off"

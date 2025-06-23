@@ -590,7 +590,7 @@ export const Keyboard = ({
               value={commandInputValue}
               onChange={(e) => setCommandInputValue(e.target.value)}
               className={cn(
-                "flex-grow bg-transparent focus:outline-none text-sm",
+                "flex-grow bg-transparent focus:outline-none text-base",
                 "text-foreground placeholder-muted-foreground",
               )}
               placeholder="type command and press Enter..."

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { usePathname } from "next/navigation";
 import { GlobalCommandPalette } from "@/components/global-command-palette";
+import { MobileNavDropdown } from "@/components/mobile-nav-dropdown";
 
 export default function ClientLayout({
   children,
@@ -12,6 +13,15 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  
+  const getCurrentPage = (): "about" | "projects" | "roadmap" | null => {
+    if (pathname === "/about") return "about";
+    if (pathname === "/projects") return "projects";
+    if (pathname === "/roadmap") return "roadmap";
+    return null;
+  };
+  
+  const currentPage = getCurrentPage();
 
   return (
     <ThemeProvider defaultTheme="geist-light" storageKey="tui-cat-theme">
@@ -35,6 +45,9 @@ export default function ClientLayout({
       </main>
       {/* Only show global command palette on pages that don't have their own command interface */}
       {pathname !== "/ssh" && pathname !== "/" && <GlobalCommandPalette />}
+      
+      {/* Mobile Navigation - only show on pages with sidebars */}
+      {currentPage && <MobileNavDropdown currentPage={currentPage} />}
     </ThemeProvider>
   );
 }
